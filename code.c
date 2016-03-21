@@ -67,54 +67,6 @@ void djikstra(int n, int G[MAX_NODES][MAX_NODES],int *distance,int startnode)
 	for(i=0;i<n;i++) if(i!=startnode) printf("Distance of node %d from node %d = %d\n",i,startnode,distance[i]);
 }
 
-/*
- * Compute single source shortest path using Djiktra's algorithm
- * from an adjacency matrix
- */
-void _djikstra(int size, int graph[size][size], int *distance, int src) {
-
-     int dist[size];     // The output array.  dist[i] will hold the shortest
-                      // distance from src to i
-
-     bool sptSet[size]; // sptSet[i] will true if vertex i is included in shortest
-                     // path tree or shortest distance from src to i is finalized
-
-     // Initialize all distances as INFINITE and stpSet[] as false
-     for (int i = 0; i < size; i++)
-        dist[i] = INT_MAX, sptSet[i] = false;
-
-     // Distance of source vertex from itself is always 0
-     dist[src] = 0;
-
-     // Find shortest path for all vertices
-     for (int count = 0; count < size-1; count++)
-     {
-       // Pick the minimum distance vertex from the set of vertices not
-       // yet processed. u is always equal to src in first iteration.
-       int u = minDistance(size, dist, sptSet);
-
-       // Mark the picked vertex as processed
-       sptSet[u] = true;
-
-       // Update dist value of the adjacent vertices of the picked vertex.
-       for (int v = 0; v < size; v++) {
-         // Update dist[v] only if is not in sptSet, there is an edge from
-         // u to v, and total weight of path from src to  v through u is
-         // smaller than current value of dist[v]
-       	printf("Trying for %d,%d is %s. Current distance is %d. Probable distance is %d\n", u,v, graph[u][v]==0?"not adjacent":"adjacent", dist[v],dist[u]+graph[u][v] );
-         if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u]+graph[u][v] < dist[v])
-            dist[v] = dist[u] + graph[u][v];
-       }
-     }
-
-     printf("----------------------\n");
-     for( int i=0; i<size; i++) {
-    	 distance[i] = dist[i];
-    	 printf("[%d] ", dist[i]);
-     }
-     printf("\n----------------------\n");
- }
-
 
 int main() {
 	int nodes, edges, channels, i;
