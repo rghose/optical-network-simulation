@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#include "node.h"
+
 #define MAX_NODES 100
 
 #define INFINITY 99999
@@ -66,7 +68,6 @@ void djikstra(int n, int G[MAX_NODES][MAX_NODES],int *distance,int startnode)
 	//print the path and distance of each node
 	for(i=0;i<n;i++) if(i!=startnode) printf("Distance of node %d from node %d = %d\n",i,startnode,distance[i]);
 }
-
 
 int main() {
 	int nodes, edges, channels, i;
